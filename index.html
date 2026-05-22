@@ -3,178 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>郭悦仪 | 个人主页</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#222222',
-                        secondary: '#666666',
-                        light: '#f5f5f5'
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif']
-                    }
-                }
-            }
+    <title>个人主页 | GYY</title>
+    <style>
+        /* --- 基础变量与重置 --- */
+        :root {
+            --bg-color: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #555555;
+            --accent-color: #0056b3; /* 极简蓝 */
+            --card-bg: #f9f9f9;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --max-width: 800px;
         }
-    </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .text-balance {
-                text-wrap: balance;
-            }
-            .card-blur {
-                backdrop-filter: blur(8px);
-            }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        /* --- 布局容器 --- */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* --- 头部区域 --- */
+        header {
+            margin-bottom: 60px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* --- 通用板块样式 --- */
+        section { margin-bottom: 50px; }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-primary);
+        }
+
+        p { margin-bottom: 15px; color: var(--text-secondary); }
+
+        /* --- 技能标签 --- */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid #eaeaea;
+            transition: transform 0.2s;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+        }
+
+        /* --- 项目列表 --- */
+        .project-card {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #eaeaea;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .project-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .project-link {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .project-link:hover { text-decoration: underline; }
+
+        /* --- 底部 --- */
+        footer {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid #eee;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .social-links a {
+            color: var(--text-primary);
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        /* --- 移动端适配 --- */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 20px 15px; }
+            section { margin-bottom: 40px; }
         }
     </style>
 </head>
-<body class="bg-white text-primary font-sans antialiased">
-    <!-- 导航栏 -->
-    <nav class="fixed w-full bg-white/90 card-blur z-50 border-b border-gray-100">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <span class="text-xl font-medium">郭悦仪</span>
-            <div class="hidden md:flex gap-8 text-secondary text-sm">
-                <a href=" " class="hover:text-primary transition-colors">关于我</a >
-                <a href="#skills" class="hover:text-primary transition-colors">技能</a >
-                <a href="#projects" class="hover:text-primary transition-colors">项目</a >
-                <a href="#contact" class="hover:text-primary transition-colors">联系</a >
-            </div>
-            <button class="md:hidden text-lg">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-        </div>
-    </nav>
+<body>
 
-    <!-- 1. 介绍板块 -->
-    <section id="about" class="max-w-6xl mx-auto px-4 pt-32 pb-20">
-        <div class="flex flex-col md:flex-row items-center gap-10">
-            <!-- 圆形头像占位 -->
-            <div class="w-48 h-48 rounded-full bg-gray-200 overflow-hidden shrink-0">
-                <!-- 后续可自行替换头像图片 -->
-            </div>
-            <div class="flex flex-col justify-center">
-                <h1 class="text-4xl md:text-5xl font-bold mb-4">郭悦仪</h1>
-                <p class="text-secondary mb-6 max-w-lg">极简生活，专注成长，热爱创造与探索。</p >
-                <!-- 快速导航 -->
-                <div class="flex flex-wrap gap-4 mb-6">
-                    <a href="#skills" class="px-4 py-2 bg-light rounded-full text-sm hover:bg-gray-200 transition">技能专长</a >
-                    <a href="#projects" class="px-4 py-2 bg-light rounded-full text-sm hover:bg-gray-200 transition">作品项目</a >
-                    <a href="#contact" class="px-4 py-2 bg-light rounded-full text-sm hover:bg-gray-200 transition">联系方式</a >
-                </div>
-                <!-- 联系方式 -->
-                <div class="flex items-center gap-3 text-secondary">
-                    <i class="fa-solid fa-phone"></i>
-                    <span>17881840930</span>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="container">
+        <!-- 头部简介 -->
+        <header>
+            <h1>你好，我是 GYY。</h1>
+            <p class="subtitle">一名热爱技术与设计的开发者。</p>
+        </header>
 
-    <!-- 2. 技能板块 -->
-    <section id="skills" class="bg-light py-20">
-        <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-12 text-center">技能专长</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-                <div class="bg-white p-6 rounded-xl shadow-sm text-center">技能 1</div>
-                <div class="bg-white p-6 rounded-xl shadow-sm text-center">技能 2</div>
-                <div class="bg-white p-6 rounded-xl shadow-sm text-center">技能 3</div>
-                <div class="bg-white p-6 rounded-xl shadow-sm text-center">技能 4</div>
-                <div class="bg-white p-6 rounded-xl shadow-sm text-center">技能 5</div>
-                <div class="bg-white p-6 rounded-xl shadow-sm text-center">技能 6</div>
-            </div>
-        </div>
-    </section>
+        <!-- 关于我 -->
+        <section id="about">
+            <h2>关于我</h2>
+            <p>这里填写你的个人简介。例如：我是一名专注于前端开发的工程师，喜欢简洁高效的代码和优雅的交互设计。我致力于通过技术解决实际问题，并不断追求极致的用户体验。</p>
+            <p>目前居住在深圳，正在寻找新的机会 / 或者正在专注于个人项目的开发。</p>
+        </section>
 
-    <!-- 3. 项目板块 -->
-    <section id="projects" class="py-20">
-        <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl font-bold mb-12 text-center">我的项目</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- 12个Coming Soon项目卡片 -->
-                <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden relative">
-                    <div class="absolute inset-0 bg-gray-200/50 backdrop-blur-sm flex items-center justify-center">
-                        <span class="text-secondary">Coming Soon</span>
-                    </div>
-                </div>
-                <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden relative">
-                    <div class="absolute inset-0 bg-gray-200/50 backdrop-blur-sm flex items-center justify-center">
-                        <span class="text-secondary">Coming Soon</span>
-                    </div>
-                </div>
-                <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden relative">
-                    <div class="absolute inset-0 bg-gray-200/50 backdrop-blur-sm flex items-center justify-center">
-                        <span class="text-secondary">Coming Soon</span>
-                    </div>
-                </div>
-                <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden relative">
-                    <div class="absolute inset-0 bg-gray-200/50 backdrop-blur-sm flex items-center justify-center">
-                        <span class="text-secondary">Coming Soon</span>
-                    </div>
-                </div>
-                <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden relative">
-                    <div class="absolute inset-0 bg-gray-200/50 backdrop-blur-sm flex items-center justify-center">
-                        <span class="text-secondary">Coming Soon</span>
-                    </div>
-                </div>
-                <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden relative">
-                    <div class="absolute inset-0 bg-gray-200/50 backdrop-blur-sm flex items-center justify-center">
-                        <span class="text-secondary">Coming Soon</span>
-                    </div>
-                </div>
-                <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden relative">
-                    <div class="absolute inset-0 bg-gray-200/50 backdrop-blur-sm flex items-center justify-center">
-                        <span class="text-secondary">Coming Soon</span>
-                    </div>
-                </div>
-                <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden relative">
-                    <div class="absolute inset-0 bg-gray-200/50 backdrop-blur-sm flex items-center justify-center">
-                        <span class="text-secondary">Coming Soon</span>
-                    </div>
-                </div>
-                <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden relative">
-                    <div class="absolute inset-0 bg-gray-200/50 backdrop-blur-sm flex items-center justify-center">
-                        <span class="text-secondary">Coming Soon</span>
-                    </div>
-                </div>
-                <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden relative">
-                    <div class="absolute inset-0 bg-gray-200/50 backdrop-blur-sm flex items-center justify-center">
-                        <span class="text-secondary">Coming Soon</span>
-                    </div>
-                </div>
-                <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden relative">
-                    <div class="absolute inset-0 bg-gray-200/50 backdrop-blur-sm flex items-center justify-center">
-                        <span class="text-secondary">Coming Soon</span>
-                    </div>
-                </div>
-                <div class="aspect-video bg-gray-100 rounded-xl overflow-hidden relative">
-                    <div class="absolute inset-0 bg-gray-200/50 backdrop-blur-sm flex items-center justify-center">
-                        <span class="text-secondary">Coming Soon</span>
-                    </div>
-                </div>
+        <!-- 技能列表 -->
+        <section id="skills">
+            <h2>技能专长</h2>
+            <div class="skills-grid">
+                <!-- 你可以随意增减下面的 span 标签 -->
+                <span class="skill-tag">HTML5 & CSS3</span>
+                <span class="skill-tag">JavaScript (ES6+)</span>
+                <span class="skill-tag">React / Vue</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">UI 设计</span>
+                <span class="skill-tag">Git 版本控制</span>
+                <span class="skill-tag">响应式布局</span>
+                <span class="skill-tag">Node.js</span>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 4. 联系板块 -->
-    <section id="contact" class="bg-light py-20">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-6">联系我</h2>
-            <p class="text-secondary mb-8">欢迎随时与我取得联系</p >
-            <div class="flex justify-center items-center gap-4 text-lg">
-                <i class="fa-solid fa-phone"></i>
-                <span>17881840930</span>
+        <!-- 项目展示 -->
+        <section id="projects">
+            <h2>精选项目</h2>
+
+            <!-- 项目 1 -->
+            <div class="project-card">
+                <div class="project-title">个人网站搭建</div>
+                <p class="project-desc">使用 HTML/CSS 构建的极简风格个人主页，部署在 GitHub Pages 上，实现了完全的响应式适配。</p>
+                <a href="#" class="project-link">查看项目 &rarr;</a>
             </div>
-        </div>
-    </section>
 
-    <!-- 页脚 -->
-    <footer class="py-6 text-center text-sm text-secondary border-t border-gray-100">
-        <p>© 2025 郭悦仪 All Rights Reserved</p >
-    </footer>
+            <!-- 项目 2 -->
+            <div class="project-card">
+                <div class="project-title">待添加的项目名称</div>
+                <p class="project-desc">这里可以描述你做过的另一个项目。简要说明项目的功能、使用的技术栈以及你的贡献。</p>
+                <a href="#" class="project-link">查看项目 &rarr;</a>
+            </div>
+        </section>
+
+        <!-- 底部联系方式 -->
+        <footer>
+            <div class="social-links">
+                <a href="#">GitHub</a>
+                <a href="#">Email</a>
+                <a href="#">LinkedIn</a>
+            </div>
+            <br>
+            <p>&copy; 2026 GYY. 版权所有.</p>
+        </footer>
+    </div>
+
 </body>
 </html>
