@@ -1,586 +1,572 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>郭悦仪｜Growth Operations Portfolio</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <!-- FONT -->
+<title>郭悦仪｜Growth Portfolio</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <style>
+<style>
 
-    :root{
-      --bg:#0a0a0a;
-      --card:#111111;
-      --line:#1f1f1f;
+:root{
+  --bg:#050505;
+  --card:#101010;
+  --line:#1d1d1d;
 
-      --text:#ffffff;
-      --sub:#9b9b9b;
+  --text:#ffffff;
+  --sub:#8f8f8f;
 
-      --green:#00ff9d;
+  --green:#00ff9d;
 
-      --radius:24px;
+  --radius:26px;
 
-      --shadow:
-      0 10px 40px rgba(0,0,0,0.35);
+  --shadow:
+  0 10px 40px rgba(0,0,0,0.35);
+}
 
-      --max-width:1180px;
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
+html{
+  scroll-behavior:smooth;
+}
 
-    html{
-      scroll-behavior:smooth;
-    }
+body{
+  background:var(--bg);
+  color:var(--text);
 
-    body{
-      background:var(--bg);
-      color:var(--text);
+  font-family:'Inter',sans-serif;
 
-      font-family:'Inter',sans-serif;
+  overflow-x:hidden;
 
-      overflow-x:hidden;
+  line-height:1.7;
 
-      line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
 
-      -webkit-font-smoothing:antialiased;
-    }
+/* BACKGROUND */
 
-    /* BACKGROUND */
+.bg{
+  position:fixed;
+  inset:0;
+  z-index:-2;
 
-    .bg-grid{
-      position:fixed;
-      inset:0;
+  background:
+  linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
 
-      background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size:40px 40px;
+}
 
-      background-size:40px 40px;
+.glow{
+  position:fixed;
 
-      z-index:-2;
-    }
+  width:700px;
+  height:700px;
 
-    .glow{
-      position:fixed;
-      width:700px;
-      height:700px;
+  background:
+  radial-gradient(circle,
+  rgba(0,255,157,0.15),
+  transparent 70%);
 
-      background:
-      radial-gradient(circle,
-      rgba(0,255,157,0.12),
-      transparent 70%);
+  top:-250px;
+  right:-250px;
 
-      top:-250px;
-      right:-250px;
+  z-index:-1;
+}
 
-      z-index:-1;
-    }
+.container{
+  max-width:1180px;
+  margin:auto;
+  padding:30px;
+}
 
-    .container{
-      max-width:var(--max-width);
-      margin:auto;
-      padding:28px;
-    }
+/* NAV */
 
-    /* NAV */
+.nav{
+  position:sticky;
+  top:0;
+  z-index:999;
 
-    .nav{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
+  backdrop-filter:blur(20px);
 
-      margin-bottom:100px;
-    }
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 
-    .logo{
-      font-size:1rem;
-      font-weight:700;
+  padding:18px 0;
 
-      letter-spacing:-0.5px;
-    }
+  margin-bottom:80px;
+}
 
-    .nav-links{
-      display:flex;
-      gap:28px;
-    }
+.logo{
+  font-weight:700;
+  letter-spacing:-0.5px;
+}
 
-    .nav-links a{
-      text-decoration:none;
-      color:var(--sub);
+.nav-links{
+  display:flex;
+  gap:28px;
+}
 
-      font-size:0.92rem;
+.nav-links a{
+  text-decoration:none;
+  color:var(--sub);
+  transition:0.3s;
+}
 
-      transition:0.3s;
-    }
+.nav-links a:hover{
+  color:white;
+}
 
-    .nav-links a:hover{
-      color:var(--text);
-    }
+/* HERO */
 
-    /* HERO */
+.hero{
+  min-height:90vh;
 
-    .hero{
-      display:grid;
-      grid-template-columns:1.2fr 0.8fr;
-      gap:50px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 
-      align-items:center;
+  margin-bottom:100px;
+}
 
-      margin-bottom:120px;
-    }
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
 
-    .hero-badge{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
+  width:max-content;
 
-      padding:10px 16px;
+  padding:10px 16px;
 
-      background:#111;
-      border:1px solid #1d1d1d;
+  border-radius:999px;
 
-      border-radius:999px;
+  border:1px solid #1f1f1f;
 
-      color:var(--sub);
+  background:#101010;
 
-      font-size:0.82rem;
+  color:var(--sub);
 
-      margin-bottom:30px;
-    }
+  font-size:0.85rem;
 
-    .pulse{
-      width:8px;
-      height:8px;
+  margin-bottom:30px;
+}
 
-      background:var(--green);
+.dot{
+  width:8px;
+  height:8px;
 
-      border-radius:50%;
+  background:var(--green);
 
-      animation:pulse 1.5s infinite;
-    }
+  border-radius:50%;
 
-    @keyframes pulse{
-      0%{opacity:0.5;}
-      50%{opacity:1;}
-      100%{opacity:0.5;}
-    }
+  animation:pulse 1.5s infinite;
+}
 
-    h1{
-      font-size:5.5rem;
+@keyframes pulse{
+  0%{opacity:0.5;}
+  50%{opacity:1;}
+  100%{opacity:0.5;}
+}
 
-      line-height:0.92;
+h1{
+  font-size:7rem;
 
-      letter-spacing:-5px;
+  line-height:0.9;
 
-      margin-bottom:28px;
-    }
+  letter-spacing:-6px;
 
-    .gradient{
-      background:linear-gradient(
-      to right,
-      #ffffff,
-      #7f7f7f);
+  margin-bottom:28px;
+}
 
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
+.gradient{
+  background:linear-gradient(
+  to right,
+  #ffffff,
+  #666666);
 
-    .hero p{
-      color:var(--sub);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
 
-      font-size:1.08rem;
+.hero p{
+  max-width:720px;
 
-      max-width:640px;
-    }
+  color:var(--sub);
 
-    .hero-actions{
-      display:flex;
-      gap:14px;
+  font-size:1.1rem;
 
-      margin-top:38px;
+  margin-bottom:40px;
+}
 
-      flex-wrap:wrap;
-    }
+/* BUTTONS */
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
+.buttons{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+}
 
-      padding:14px 22px;
+.btn{
+  position:relative;
 
-      border-radius:14px;
+  overflow:hidden;
 
-      text-decoration:none;
+  padding:16px 24px;
 
-      font-weight:600;
+  border-radius:16px;
 
-      transition:0.3s;
-    }
+  border:none;
 
-    .btn-primary{
-      background:var(--green);
-      color:#000;
-    }
+  cursor:pointer;
 
-    .btn-primary:hover{
-      transform:translateY(-4px);
-      box-shadow:0 10px 30px rgba(0,255,157,0.25);
-    }
+  font-size:0.95rem;
+  font-weight:700;
 
-    .btn-secondary{
-      border:1px solid #222;
-      color:white;
-      background:#111;
-    }
+  transition:0.3s;
 
-    .btn-secondary:hover{
-      transform:translateY(-4px);
-    }
+  text-decoration:none;
 
-    /* HERO METRICS */
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
 
-    .hero-card{
-      background:rgba(17,17,17,0.8);
+.btn-primary{
+  background:var(--green);
+  color:#000;
+}
 
-      border:1px solid #1f1f1f;
+.btn-secondary{
+  background:#111;
+  color:#fff;
+  border:1px solid #1f1f1f;
+}
 
-      border-radius:32px;
+.btn:hover{
+  transform:translateY(-5px);
+}
 
-      padding:34px;
+.btn::after{
+  content:"";
 
-      box-shadow:var(--shadow);
+  position:absolute;
 
-      backdrop-filter:blur(18px);
+  width:0;
+  height:0;
 
-      transition:0.35s ease;
-    }
+  background:rgba(255,255,255,0.3);
 
-    .hero-card:hover{
-      transform:translateY(-8px);
-    }
+  border-radius:50%;
 
-    .metric{
-      margin-bottom:34px;
-    }
+  transform:translate(-50%, -50%);
 
-    .metric:last-child{
-      margin-bottom:0;
-    }
+  left:var(--x);
+  top:var(--y);
 
-    .metric-number{
-      font-size:3rem;
-      font-weight:800;
+  transition:width .5s,height .5s;
+}
 
-      letter-spacing:-3px;
-    }
+.btn:active::after{
+  width:300px;
+  height:300px;
+}
 
-    .metric-label{
-      color:var(--sub);
-      font-size:0.92rem;
-    }
+/* SECTION */
 
-    /* SECTION */
+section{
+  margin-bottom:120px;
+}
 
-    section{
-      margin-bottom:90px;
-    }
+.section-title{
+  color:var(--sub);
 
-    .section-title{
-      color:var(--sub);
+  font-size:0.85rem;
 
-      font-size:0.82rem;
+  text-transform:uppercase;
 
-      text-transform:uppercase;
+  letter-spacing:1.5px;
 
-      letter-spacing:1.5px;
+  margin-bottom:28px;
 
-      margin-bottom:26px;
+  font-weight:700;
+}
 
-      font-weight:700;
-    }
+/* STATS */
 
-    /* SKILLS */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+}
 
-    .skills{
-      display:flex;
-      flex-wrap:wrap;
-      gap:14px;
-    }
+.stat{
+  background:#101010;
 
-    .skill{
-      padding:12px 18px;
+  border:1px solid #1f1f1f;
 
-      border-radius:999px;
+  border-radius:28px;
 
-      background:#111;
+  padding:34px;
 
-      border:1px solid #1f1f1f;
+  transition:0.4s;
 
-      transition:0.3s;
+  cursor:pointer;
+}
 
-      cursor:pointer;
-    }
+.stat:hover{
+  transform:translateY(-10px);
+  border-color:var(--green);
+}
 
-    .skill:hover{
-      transform:translateY(-4px);
-      border-color:var(--green);
-      color:var(--green);
-    }
+.stat-number{
+  font-size:3rem;
+  font-weight:800;
 
-    /* CASES */
+  letter-spacing:-3px;
 
-    .cases{
-      display:grid;
-      gap:24px;
-    }
+  margin-bottom:8px;
+}
 
-    .case-card{
-      background:#111;
+.stat-label{
+  color:var(--sub);
+}
 
-      border:1px solid #1f1f1f;
+/* CASES */
 
-      border-radius:30px;
+.cases{
+  display:grid;
+  gap:24px;
+}
 
-      padding:34px;
+.case{
+  position:relative;
 
-      transition:0.35s ease;
+  overflow:hidden;
 
-      position:relative;
+  background:#101010;
 
-      overflow:hidden;
-    }
+  border:1px solid #1f1f1f;
 
-    .case-card::before{
-      content:"";
+  border-radius:32px;
 
-      position:absolute;
+  padding:38px;
 
-      inset:0;
+  transition:0.4s;
+}
 
-      background:
-      linear-gradient(
-      120deg,
-      transparent,
-      rgba(255,255,255,0.03),
-      transparent);
+.case:hover{
+  transform:translateY(-10px);
+  border-color:#2c2c2c;
+}
 
-      transform:translateX(-100%);
+.case::before{
+  content:"";
 
-      transition:0.8s;
-    }
+  position:absolute;
+  inset:0;
 
-    .case-card:hover::before{
-      transform:translateX(100%);
-    }
+  background:
+  linear-gradient(
+  120deg,
+  transparent,
+  rgba(255,255,255,0.05),
+  transparent);
 
-    .case-card:hover{
-      transform:translateY(-8px);
-      border-color:#2b2b2b;
-    }
+  transform:translateX(-100%);
 
-    .case-top{
-      display:flex;
-      justify-content:space-between;
-      gap:20px;
+  transition:1s;
+}
 
-      margin-bottom:18px;
-    }
+.case:hover::before{
+  transform:translateX(100%);
+}
 
-    .case-title{
-      font-size:1.4rem;
-      font-weight:700;
-      letter-spacing:-1px;
-    }
+.case-title{
+  font-size:1.6rem;
+  font-weight:700;
 
-    .case-tag{
-      color:var(--green);
+  margin-bottom:16px;
+}
 
-      font-size:0.82rem;
+.case p{
+  color:var(--sub);
 
-      white-space:nowrap;
-    }
+  max-width:760px;
 
-    .case-desc{
-      color:var(--sub);
+  margin-bottom:24px;
+}
 
-      margin-bottom:24px;
+.tags{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
 
-      max-width:760px;
-    }
+.tag{
+  padding:10px 14px;
 
-    .impact{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-    }
+  border-radius:999px;
 
-    .impact-item{
-      padding:10px 14px;
+  background:#0b0b0b;
 
-      border-radius:999px;
+  border:1px solid #1d1d1d;
 
-      background:#0d0d0d;
+  font-size:0.88rem;
+}
 
-      border:1px solid #1d1d1d;
+/* TIMELINE */
 
-      font-size:0.88rem;
-    }
+.timeline{
+  border-left:1px solid #1f1f1f;
 
-    /* EXPERIENCE */
+  padding-left:30px;
+}
 
-    .timeline{
-      border-left:1px solid #1f1f1f;
-      padding-left:28px;
-    }
+.timeline-item{
+  position:relative;
 
-    .timeline-item{
-      position:relative;
-      margin-bottom:42px;
-    }
+  margin-bottom:50px;
+}
 
-    .timeline-item::before{
-      content:"";
+.timeline-item::before{
+  content:"";
 
-      position:absolute;
+  position:absolute;
 
-      width:12px;
-      height:12px;
+  width:12px;
+  height:12px;
 
-      border-radius:50%;
+  border-radius:50%;
 
-      background:var(--green);
+  background:var(--green);
 
-      left:-35px;
-      top:8px;
-    }
+  left:-37px;
+  top:8px;
+}
 
-    .timeline-company{
-      font-size:1.1rem;
-      font-weight:700;
-    }
+.timeline-company{
+  font-size:1.2rem;
+  font-weight:700;
+}
 
-    .timeline-role{
-      color:var(--sub);
-      margin-bottom:8px;
-    }
+.timeline-role{
+  color:var(--sub);
+}
 
-    .timeline-date{
-      color:#666;
-      font-size:0.9rem;
-      margin-bottom:10px;
-    }
+.timeline-date{
+  color:#666;
 
-    /* CONTACT */
+  margin-top:6px;
+}
 
-    .contact{
-      background:#111;
+/* CONTACT */
 
-      border:1px solid #1f1f1f;
+.contact{
+  text-align:center;
 
-      border-radius:32px;
+  background:#101010;
 
-      padding:50px;
+  border:1px solid #1f1f1f;
 
-      text-align:center;
-    }
+  border-radius:40px;
 
-    .contact h2{
-      font-size:3rem;
-      letter-spacing:-2px;
+  padding:70px 40px;
+}
 
-      margin-bottom:16px;
-    }
+.contact h2{
+  font-size:4rem;
 
-    .contact p{
-      color:var(--sub);
+  letter-spacing:-3px;
 
-      margin-bottom:28px;
-    }
+  margin-bottom:20px;
+}
 
-    /* FOOTER */
+.contact p{
+  color:var(--sub);
 
-    footer{
-      padding:40px 0;
+  margin-bottom:34px;
+}
 
-      display:flex;
-      justify-content:space-between;
-      flex-wrap:wrap;
+/* FLOAT */
 
-      gap:20px;
+.float{
+  animation:float 4s ease-in-out infinite;
+}
 
-      color:#666;
+@keyframes float{
+  0%{transform:translateY(0px);}
+  50%{transform:translateY(-12px);}
+  100%{transform:translateY(0px);}
+}
 
-      font-size:0.92rem;
-    }
+/* SCROLL ANIMATION */
 
-    /* MOBILE */
+.reveal{
+  opacity:0;
+  transform:translateY(50px);
+  transition:1s;
+}
 
-    @media(max-width:980px){
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
+}
 
-      .hero{
-        grid-template-columns:1fr;
-      }
+/* MOBILE */
 
-      h1{
-        font-size:3.8rem;
-      }
+@media(max-width:900px){
 
-    }
+  h1{
+    font-size:4rem;
+  }
 
-    @media(max-width:640px){
+  .stats{
+    grid-template-columns:1fr 1fr;
+  }
 
-      .container{
-        padding:18px;
-      }
+}
 
-      h1{
-        font-size:2.8rem;
-        letter-spacing:-2px;
-      }
+@media(max-width:640px){
 
-      .nav{
-        margin-bottom:60px;
-      }
+  .container{
+    padding:20px;
+  }
 
-      .hero{
-        margin-bottom:70px;
-      }
+  h1{
+    font-size:2.8rem;
+    letter-spacing:-2px;
+  }
 
-      section{
-        margin-bottom:60px;
-      }
+  .hero{
+    min-height:80vh;
+  }
 
-      .case-card{
-        padding:24px;
-      }
+  .stats{
+    grid-template-columns:1fr;
+  }
 
-      .contact{
-        padding:34px 24px;
-      }
+  .contact h2{
+    font-size:2.2rem;
+  }
 
-      .contact h2{
-        font-size:2rem;
-      }
+}
 
-    }
-
-  </style>
+</style>
 </head>
 
 <body>
 
-<div class="bg-grid"></div>
+<div class="bg"></div>
 <div class="glow"></div>
 
 <div class="container">
@@ -604,99 +590,89 @@
 
   <!-- HERO -->
 
-  <section class="hero">
+  <section class="hero reveal">
 
-    <div>
-
-      <div class="hero-badge">
-        <div class="pulse"></div>
-        Growth Operations Strategist
-      </div>
-
-      <h1>
-        增长驱动型<br>
-        <span class="gradient">
-          电商运营人
-        </span>
-      </h1>
-
-      <p>
-        专注于 O2O、电商增长与 AI 提效运营。
-        擅长通过数据分析、平台增长策略与精细化运营，
-        推动 GMV 与业务持续增长。
-      </p>
-
-      <div class="hero-actions">
-
-        <a href="#cases" class="btn btn-primary">
-          查看 Growth Cases
-        </a>
-
-        <a href="#contact" class="btn btn-secondary">
-          联系我
-        </a>
-
-      </div>
-
+    <div class="badge">
+      <div class="dot"></div>
+      Growth Operations Strategist
     </div>
 
-    <!-- HERO CARD -->
+    <h1>
+      增长驱动型<br>
+      <span class="gradient">
+        电商运营人
+      </span>
+    </h1>
 
-    <div class="hero-card">
+    <p>
+      专注于 O2O、电商增长与 AI 提效运营，
+      通过数据分析与平台增长策略，
+      推动业务持续增长。
+    </p>
 
-      <div class="metric">
-        <div class="metric-number">
-          1.5亿+
-        </div>
+    <div class="buttons">
 
-        <div class="metric-label">
-          项目累计 GMV
-        </div>
-      </div>
+      <button class="btn btn-primary sound-btn">
+        查看 Growth Cases
+      </button>
 
-      <div class="metric">
-        <div class="metric-number">
-          202%
-        </div>
-
-        <div class="metric-label">
-          平台同比增长
-        </div>
-      </div>
-
-      <div class="metric">
-        <div class="metric-number">
-          400w+
-        </div>
-
-        <div class="metric-label">
-          年佣金收益
-        </div>
-      </div>
+      <button class="btn btn-secondary sound-btn">
+        联系我
+      </button>
 
     </div>
 
   </section>
 
-  <!-- ABOUT -->
+  <!-- STATS -->
 
-  <section id="about">
+  <section class="reveal">
 
     <div class="section-title">
-      Core Expertise
+      Key Metrics
     </div>
 
-    <div class="skills">
+    <div class="stats">
 
-      <div class="skill">O2O Growth</div>
-      <div class="skill">Commerce Operations</div>
-      <div class="skill">AI Operations</div>
-      <div class="skill">Growth Strategy</div>
-      <div class="skill">Data Analysis</div>
-      <div class="skill">Community Commerce</div>
-      <div class="skill">Campaign Planning</div>
-      <div class="skill">User Growth</div>
-      <div class="skill">Platform Operations</div>
+      <div class="stat float">
+        <div class="stat-number">
+          1.5亿+
+        </div>
+
+        <div class="stat-label">
+          累计 GMV
+        </div>
+      </div>
+
+      <div class="stat float">
+        <div class="stat-number">
+          202%
+        </div>
+
+        <div class="stat-label">
+          平台同比增长
+        </div>
+      </div>
+
+      <div class="stat float">
+        <div class="stat-number">
+          400w+
+        </div>
+
+        <div class="stat-label">
+          年佣金收益
+        </div>
+      </div>
+
+      <div class="stat float">
+        <div class="stat-number">
+          TOP8
+        </div>
+
+        <div class="stat-label">
+          美团全国类目
+        </div>
+      </div>
 
     </div>
 
@@ -704,7 +680,7 @@
 
   <!-- CASES -->
 
-  <section id="cases">
+  <section id="cases" class="reveal">
 
     <div class="section-title">
       Featured Growth Cases
@@ -712,124 +688,60 @@
 
     <div class="cases">
 
-      <!-- CASE 1 -->
+      <div class="case">
 
-      <div class="case-card">
-
-        <div class="case-top">
-
-          <div class="case-title">
-            适老化智慧商城增长项目
-          </div>
-
-          <div class="case-tag">
-            CASE 01
-          </div>
-
+        <div class="case-title">
+          适老化智慧商城增长项目
         </div>
 
-        <div class="case-desc">
+        <p>
           围绕银发经济打造“线上商城 + 上门服务” O2O 模式，
-          通过 AI 辅助选品、运营体系搭建与服务链路优化，
-          推动业务快速增长。
-        </div>
+          通过 AI 辅助选品与精细化运营，
+          推动业务高速增长。
+        </p>
 
-        <div class="impact">
+        <div class="tags">
 
-          <div class="impact-item">
+          <div class="tag">
             GMV 1.5亿+
           </div>
 
-          <div class="impact-item">
+          <div class="tag">
             AI 选品
           </div>
 
-          <div class="impact-item">
-            O2O 服务链路
-          </div>
-
-          <div class="impact-item">
-            精细化运营
+          <div class="tag">
+            O2O 增长
           </div>
 
         </div>
 
       </div>
 
-      <!-- CASE 2 -->
+      <div class="case">
 
-      <div class="case-card">
-
-        <div class="case-top">
-
-          <div class="case-title">
-            全棉时代 O2O 增长项目
-          </div>
-
-          <div class="case-tag">
-            CASE 02
-          </div>
-
+        <div class="case-title">
+          全棉时代 O2O 增长项目
         </div>
 
-        <div class="case-desc">
+        <p>
           负责饿了么、淘鲜达等平台增长运营，
-          通过资源位获取、ROI 优化与经营复盘，
-          推动平台实现爆发式增长。
-        </div>
+          通过资源位获取与 ROI 优化，
+          推动平台同比增长 202%。
+        </p>
 
-        <div class="impact">
+        <div class="tags">
 
-          <div class="impact-item">
-            同比增长 202%
-          </div>
-
-          <div class="impact-item">
+          <div class="tag">
             ROI 优化
           </div>
 
-          <div class="impact-item">
-            费比下降 6%
+          <div class="tag">
+            同比增长 202%
           </div>
 
-        </div>
-
-      </div>
-
-      <!-- CASE 3 -->
-
-      <div class="case-card">
-
-        <div class="case-top">
-
-          <div class="case-title">
-            社群分销增长项目
-          </div>
-
-          <div class="case-tag">
-            CASE 03
-          </div>
-
-        </div>
-
-        <div class="case-desc">
-          搭建快团团 / 有赞社群分销矩阵，
-          通过团长运营与高转化内容策略，
-          提升 GMV 与分销收益。
-        </div>
-
-        <div class="impact">
-
-          <div class="impact-item">
-            月均 GMV 40w+
-          </div>
-
-          <div class="impact-item">
-            年佣金收益 400w+
-          </div>
-
-          <div class="impact-item">
-            单篇阅读 10w+
+          <div class="tag">
+            平台运营
           </div>
 
         </div>
@@ -842,7 +754,7 @@
 
   <!-- EXPERIENCE -->
 
-  <section id="experience">
+  <section id="experience" class="reveal">
 
     <div class="section-title">
       Experience
@@ -904,7 +816,7 @@
 
   <!-- CONTACT -->
 
-  <section id="contact">
+  <section id="contact" class="reveal">
 
     <div class="contact">
 
@@ -916,13 +828,15 @@
         期待与优秀团队共同创造增长价值。
       </p>
 
-      <div class="hero-actions">
+      <div class="buttons">
 
-        <a href="mailto:1439643417@qq.com" class="btn btn-primary">
+        <a href="mailto:1439643417@qq.com"
+           class="btn btn-primary sound-btn">
           Email Me
         </a>
 
-        <a href="#" class="btn btn-secondary">
+        <a href="#"
+           class="btn btn-secondary sound-btn">
           LinkedIn
         </a>
 
@@ -932,21 +846,73 @@
 
   </section>
 
-  <!-- FOOTER -->
-
-  <footer>
-
-    <div>
-      © 2026 Yueyi Growth Portfolio
-    </div>
-
-    <div>
-      Built for GitHub / Vercel
-    </div>
-
-  </footer>
-
 </div>
+
+<!-- AUDIO -->
+
+<audio id="clickSound">
+  <source
+  src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"
+  type="audio/mpeg">
+</audio>
+
+<!-- JS -->
+
+<script>
+
+/* BUTTON SOUND */
+
+const soundBtns =
+document.querySelectorAll('.sound-btn');
+
+const clickSound =
+document.getElementById('clickSound');
+
+soundBtns.forEach(btn=>{
+
+  btn.addEventListener('click',(e)=>{
+
+    clickSound.currentTime = 0;
+    clickSound.play();
+
+    /* RIPPLE */
+
+    const x =
+    e.clientX -
+    btn.getBoundingClientRect().left;
+
+    const y =
+    e.clientY -
+    btn.getBoundingClientRect().top;
+
+    btn.style.setProperty('--x',`${x}px`);
+    btn.style.setProperty('--y',`${y}px`);
+
+  });
+
+});
+
+/* REVEAL ANIMATION */
+
+const reveals =
+document.querySelectorAll('.reveal');
+
+window.addEventListener('scroll',()=>{
+
+  reveals.forEach(el=>{
+
+    const top =
+    el.getBoundingClientRect().top;
+
+    if(top < window.innerHeight - 100){
+      el.classList.add('active');
+    }
+
+  });
+
+});
+
+</script>
 
 </body>
 </html>
