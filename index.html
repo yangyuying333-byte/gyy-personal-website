@@ -1,918 +1,268 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-<title>郭悦仪｜Growth Portfolio</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-
-:root{
-  --bg:#050505;
-  --card:#101010;
-  --line:#1d1d1d;
-
-  --text:#ffffff;
-  --sub:#8f8f8f;
-
-  --green:#00ff9d;
-
-  --radius:26px;
-
-  --shadow:
-  0 10px 40px rgba(0,0,0,0.35);
-}
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  background:var(--bg);
-  color:var(--text);
-
-  font-family:'Inter',sans-serif;
-
-  overflow-x:hidden;
-
-  line-height:1.7;
-
-  -webkit-font-smoothing:antialiased;
-}
-
-/* BACKGROUND */
-
-.bg{
-  position:fixed;
-  inset:0;
-  z-index:-2;
-
-  background:
-  linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-  linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-
-  background-size:40px 40px;
-}
-
-.glow{
-  position:fixed;
-
-  width:700px;
-  height:700px;
-
-  background:
-  radial-gradient(circle,
-  rgba(0,255,157,0.15),
-  transparent 70%);
-
-  top:-250px;
-  right:-250px;
-
-  z-index:-1;
-}
-
-.container{
-  max-width:1180px;
-  margin:auto;
-  padding:30px;
-}
-
-/* NAV */
-
-.nav{
-  position:sticky;
-  top:0;
-  z-index:999;
-
-  backdrop-filter:blur(20px);
-
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  padding:18px 0;
-
-  margin-bottom:80px;
-}
-
-.logo{
-  font-weight:700;
-  letter-spacing:-0.5px;
-}
-
-.nav-links{
-  display:flex;
-  gap:28px;
-}
-
-.nav-links a{
-  text-decoration:none;
-  color:var(--sub);
-  transition:0.3s;
-}
-
-.nav-links a:hover{
-  color:white;
-}
-
-/* HERO */
-
-.hero{
-  min-height:90vh;
-
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-
-  margin-bottom:100px;
-}
-
-.badge{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-
-  width:max-content;
-
-  padding:10px 16px;
-
-  border-radius:999px;
-
-  border:1px solid #1f1f1f;
-
-  background:#101010;
-
-  color:var(--sub);
-
-  font-size:0.85rem;
-
-  margin-bottom:30px;
-}
-
-.dot{
-  width:8px;
-  height:8px;
-
-  background:var(--green);
-
-  border-radius:50%;
-
-  animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-  0%{opacity:0.5;}
-  50%{opacity:1;}
-  100%{opacity:0.5;}
-}
-
-h1{
-  font-size:7rem;
-
-  line-height:0.9;
-
-  letter-spacing:-6px;
-
-  margin-bottom:28px;
-}
-
-.gradient{
-  background:linear-gradient(
-  to right,
-  #ffffff,
-  #666666);
-
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.hero p{
-  max-width:720px;
-
-  color:var(--sub);
-
-  font-size:1.1rem;
-
-  margin-bottom:40px;
-}
-
-/* BUTTONS */
-
-.buttons{
-  display:flex;
-  gap:16px;
-  flex-wrap:wrap;
-}
-
-.btn{
-  position:relative;
-
-  overflow:hidden;
-
-  padding:16px 24px;
-
-  border-radius:16px;
-
-  border:none;
-
-  cursor:pointer;
-
-  font-size:0.95rem;
-  font-weight:700;
-
-  transition:0.3s;
-
-  text-decoration:none;
-
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.btn-primary{
-  background:var(--green);
-  color:#000;
-}
-
-.btn-secondary{
-  background:#111;
-  color:#fff;
-  border:1px solid #1f1f1f;
-}
-
-.btn:hover{
-  transform:translateY(-5px);
-}
-
-.btn::after{
-  content:"";
-
-  position:absolute;
-
-  width:0;
-  height:0;
-
-  background:rgba(255,255,255,0.3);
-
-  border-radius:50%;
-
-  transform:translate(-50%, -50%);
-
-  left:var(--x);
-  top:var(--y);
-
-  transition:width .5s,height .5s;
-}
-
-.btn:active::after{
-  width:300px;
-  height:300px;
-}
-
-/* SECTION */
-
-section{
-  margin-bottom:120px;
-}
-
-.section-title{
-  color:var(--sub);
-
-  font-size:0.85rem;
-
-  text-transform:uppercase;
-
-  letter-spacing:1.5px;
-
-  margin-bottom:28px;
-
-  font-weight:700;
-}
-
-/* STATS */
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:20px;
-}
-
-.stat{
-  background:#101010;
-
-  border:1px solid #1f1f1f;
-
-  border-radius:28px;
-
-  padding:34px;
-
-  transition:0.4s;
-
-  cursor:pointer;
-}
-
-.stat:hover{
-  transform:translateY(-10px);
-  border-color:var(--green);
-}
-
-.stat-number{
-  font-size:3rem;
-  font-weight:800;
-
-  letter-spacing:-3px;
-
-  margin-bottom:8px;
-}
-
-.stat-label{
-  color:var(--sub);
-}
-
-/* CASES */
-
-.cases{
-  display:grid;
-  gap:24px;
-}
-
-.case{
-  position:relative;
-
-  overflow:hidden;
-
-  background:#101010;
-
-  border:1px solid #1f1f1f;
-
-  border-radius:32px;
-
-  padding:38px;
-
-  transition:0.4s;
-}
-
-.case:hover{
-  transform:translateY(-10px);
-  border-color:#2c2c2c;
-}
-
-.case::before{
-  content:"";
-
-  position:absolute;
-  inset:0;
-
-  background:
-  linear-gradient(
-  120deg,
-  transparent,
-  rgba(255,255,255,0.05),
-  transparent);
-
-  transform:translateX(-100%);
-
-  transition:1s;
-}
-
-.case:hover::before{
-  transform:translateX(100%);
-}
-
-.case-title{
-  font-size:1.6rem;
-  font-weight:700;
-
-  margin-bottom:16px;
-}
-
-.case p{
-  color:var(--sub);
-
-  max-width:760px;
-
-  margin-bottom:24px;
-}
-
-.tags{
-  display:flex;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-.tag{
-  padding:10px 14px;
-
-  border-radius:999px;
-
-  background:#0b0b0b;
-
-  border:1px solid #1d1d1d;
-
-  font-size:0.88rem;
-}
-
-/* TIMELINE */
-
-.timeline{
-  border-left:1px solid #1f1f1f;
-
-  padding-left:30px;
-}
-
-.timeline-item{
-  position:relative;
-
-  margin-bottom:50px;
-}
-
-.timeline-item::before{
-  content:"";
-
-  position:absolute;
-
-  width:12px;
-  height:12px;
-
-  border-radius:50%;
-
-  background:var(--green);
-
-  left:-37px;
-  top:8px;
-}
-
-.timeline-company{
-  font-size:1.2rem;
-  font-weight:700;
-}
-
-.timeline-role{
-  color:var(--sub);
-}
-
-.timeline-date{
-  color:#666;
-
-  margin-top:6px;
-}
-
-/* CONTACT */
-
-.contact{
-  text-align:center;
-
-  background:#101010;
-
-  border:1px solid #1f1f1f;
-
-  border-radius:40px;
-
-  padding:70px 40px;
-}
-
-.contact h2{
-  font-size:4rem;
-
-  letter-spacing:-3px;
-
-  margin-bottom:20px;
-}
-
-.contact p{
-  color:var(--sub);
-
-  margin-bottom:34px;
-}
-
-/* FLOAT */
-
-.float{
-  animation:float 4s ease-in-out infinite;
-}
-
-@keyframes float{
-  0%{transform:translateY(0px);}
-  50%{transform:translateY(-12px);}
-  100%{transform:translateY(0px);}
-}
-
-/* SCROLL ANIMATION */
-
-.reveal{
-  opacity:0;
-  transform:translateY(50px);
-  transition:1s;
-}
-
-.reveal.active{
-  opacity:1;
-  transform:translateY(0);
-}
-
-/* MOBILE */
-
-@media(max-width:900px){
-
-  h1{
-    font-size:4rem;
-  }
-
-  .stats{
-    grid-template-columns:1fr 1fr;
-  }
-
-}
-
-@media(max-width:640px){
-
-  .container{
-    padding:20px;
-  }
-
-  h1{
-    font-size:2.8rem;
-    letter-spacing:-2px;
-  }
-
-  .hero{
-    min-height:80vh;
-  }
-
-  .stats{
-    grid-template-columns:1fr;
-  }
-
-  .contact h2{
-    font-size:2.2rem;
-  }
-
-}
-
-</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>郭悦仪 - 电商运营简历</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- 基础变量与重置 --- */
+        :root {
+            --bg: #f8f9fa;
+            --text: #111827;
+            --text-secondary: #4b5563;
+            --accent: #0056b3; /* 深蓝，专业感 */
+            --card-bg: #ffffff;
+            --border: #e5e7eb;
+            --radius: 12px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            padding: 20px;
+            color: var(--text-secondary);
+        }
+
+        /* --- 容器布局 --- */
+        .resume-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* --- 卡片通用样式 --- */
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        h1, h2, h3 {
+            color: var(--text);
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        h1 { font-size: 2.2rem; border-bottom: 2px solid var(--accent); padding-bottom: 10px; }
+        h2 { font-size: 1.5rem; display: flex; align-items: center; }
+        h2::before { content: ""; display: inline-block; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; margin-right: 12px; }
+
+        /* --- 个人信息栏 --- */
+        .profile-header {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .profile-info h1 { border: none; margin-bottom: 5px; }
+        .profile-info p { color: var(--text-secondary); font-size: 1rem; }
+
+        .profile-contact { 
+            text-align: right; 
+            font-size: 0.95rem;
+        }
+        .profile-contact a { color: var(--accent); text-decoration: none; }
+
+        /* --- 核心优势列表 --- */
+        .strengths-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .strength-item {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        /* --- 时间轴样式 --- */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+            margin-left: 20px;
+        }
+
+        .timeline::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: var(--border);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 20px;
+        }
+
+        .timeline-item::before {
+            content: ''; position: absolute; left: -7px; top: 8px; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; border: 2px solid var(--card-bg);
+        }
+
+        .job-title { font-weight: 700; color: var(--text); }
+        .job-meta { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 10px; display: block; }
+        .job-desc { margin-bottom: 10px; font-size: 0.95rem; }
+        
+        /* 数据高亮 */
+        .highlight {
+            color: #990000;
+            font-weight: 600;
+            background: #fff8e1;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+
+        /* --- 技能标签 --- */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .skill-tag {
+            background: #e0e7ff; color: #4338ca; padding: 6px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 500;
+        }
+
+        /* --- 响应式调整 --- */
+        @media (max-width: 768px) {
+            .profile-header { grid-template-columns: 1fr; text-align: left; }
+            .profile-contact { text-align: left; margin-top: 10px; }
+            .timeline { margin-left: 10px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="bg"></div>
-<div class="glow"></div>
+    <div class="resume-container">
 
-<div class="container">
+        <!-- 1. 个人信息头部 -->
+        <header class="card">
+            <div class="profile-header">
+                <div class="profile-info">
+                    <h1>郭悦仪</h1>
+                    <p>求职意向：电商运营 / O2O 运营 / 运营经理助理</p>
+                </div>
+                <div class="profile-contact">
+                    <p>📞 178-8184-0930</p>
+                    <p>✉️ 1439643417@qq.com</p>
+                    <p>🎂 27 岁 | 广东</p>
+                </div>
+            </div>
+        </header>
 
-  <!-- NAV -->
+        <!-- 2. 核心优势 -->
+        <section class="card">
+            <h2>核心优势</h2>
+            <div class="strengths-grid">
+                <div class="strength-item">
+                    <strong>全链路平台精通</strong>
+                    <p>6年电商运营经验，覆盖O2O外卖、社群团购、小程序商城，具备从0-1搭建到利润复盘的闭环能力。</p>
+                </div>
+                <div class="strength-item">
+                    <strong>爆发式增长业绩</strong>
+                    <p>操盘饿了么平台实现同比增长202%，单月GMV突破40w+，年佣金收益达400w+。</p>
+                </div>
+                <div class="strength-item">
+                    <strong>AI赋能与协同</strong>
+                    <p>擅长运用AI工具优化流程，具备出色的跨部门统筹能力，保障业务顺畅运转。</p>
+                </div>
+                <div class="strength-item">
+                    <strong>数据驱动精细化</strong>
+                    <p>通过数据复盘优化费比与利润，曾实现营销费比同比下降6%，熟练使用Excel/PPT/PS。</p>
+                </div>
+            </div>
+        </section>
 
-  <nav class="nav">
+        <!-- 3. 工作经历 -->
+        <section class="card">
+            <h2>工作经历</h2>
+            <div class="timeline">
 
-    <div class="logo">
-      郭悦仪
-    </div>
+                <!-- 经历 1 -->
+                <div class="timeline-item">
+                    <span class="job-title">运营经理助理</span>
+                    <span class="job-meta">深圳市福瑞信息技术有限公司 | 2024.12 - 至今</span>
+                    <p class="job-desc">统筹集团适老化小程序（类O2O模式）日常运营，负责商品全生命周期管理与服务链路优化。</p>
+                    <p class="job-desc">建立跨部门快速响应机制，拉通采购、财务及技术资源。</p>
+                    <p><strong>业绩：</strong> 通过精细化运营与AI驱动选品，推动项目累计达成 <span class="highlight">GMV 1.5 亿</span>。</p>
+                </div>
 
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#cases">Cases</a>
-      <a href="#experience">Experience</a>
-      <a href="#contact">Contact</a>
-    </div>
+                <!-- 经历 2 -->
+                <div class="timeline-item">
+                    <span class="job-title">O2O 运营主管</span>
+                    <span class="job-meta">朴诚乳业（集团）有限公司 | 2024.06 - 2024.09</span>
+                    <p class="job-desc">独立对接饿了么、美团等核心平台，制定区域差异化促销方案，实现业务闭环。</p>
+                    <p><strong>业绩：</strong> 2024年6-8月，负责平台大盘份额占比达 <span class="highlight">6%</span>；美团乳品类目市占排名全国第 <span class="highlight">8</span> 位。</p>
+                </div>
 
-  </nav>
+                <!-- 经历 3 -->
+                <div class="timeline-item">
+                    <span class="job-title">O2O 运营专员</span>
+                    <span class="job-meta">全棉时代科技有限公司 | 2023.05 - 2024.06</span>
+                    <p class="job-desc">对接饿了么、淘鲜达等平台，创新营销玩法；通过谈判获取开机屏、Banner等广告资源。</p>
+                    <p><strong>业绩：</strong> 所负责饿了么平台，2023年同比增长 <span class="highlight">96%</span>，2024年1-6月同比增长 <span class="highlight">202%</span>。</p>
+                </div>
 
-  <!-- HERO -->
+                <!-- 经历 4 -->
+                <div class="timeline-item">
+                    <span class="job-title">电商助理</span>
+                    <span class="job-meta">深圳市少女派科技有限公司 | 2022.04 - 2023.05</span>
+                    <p class="job-desc">负责快团团、有赞小程序后台维护，拓展团长与分销商资源。</p>
+                    <p><strong>业绩：</strong> 2023年3-6月，矩阵发布76篇团文，月均GMV超 <span class="highlight">40w</span>，年佣金收益达 <span class="highlight">400w+</span>。</p>
+                </div>
 
-  <section class="hero reveal">
+                <!-- 经历 5 -->
+                <div class="timeline-item">
+                    <span class="job-title">电商助理</span>
+                    <span class="job-meta">深圳市茂业百货有限公司 | 2020.03 - 2022.04</span>
+                    <p class="job-desc">负责茂乐惠小程序、抖音平台运营，涵盖产品规划、页面优化、促销设置全流程。</p>
+                    <p><strong>业绩：</strong> 小程序日均销售额超 <span class="highlight">20w</span>，2021年Q2较Q1 GMV增幅 <span class="highlight">6.42%</span>。</p>
+                </div>
 
-    <div class="badge">
-      <div class="dot"></div>
-      Growth Operations Strategist
-    </div>
+            </div>
+        </section>
 
-    <h1>
-      增长驱动型<br>
-      <span class="gradient">
-        电商运营人
-      </span>
-    </h1>
+        <!-- 4. 教育与技能 -->
+        <section class="card">
+            <h2>教育背景与技能</h2>
+            <div class="job-meta">广东华商职业学院 | 商务英语专业 | 大专 | 2017.09 - 2020.06</div>
+            
+            <h3 style="margin: 15px 0 10px;">平台能力</h3>
+            <div class="skills">
+                <span class="skill-tag">饿了么/美团</span>
+                <span class="skill-tag">京东到家</span>
+                <span class="skill-tag">快团团</span>
+                <span class="skill-tag">有赞小程序</span>
+                <span class="skill-tag">抖音</span>
+            </div>
 
-    <p>
-      专注于 O2O、电商增长与 AI 提效运营，
-      通过数据分析与平台增长策略，
-      推动业务持续增长。
-    </p>
+            <h3 style="margin: 15px 0 10px;">核心技能</h3>
+            <div class="skills">
+                <span class="skill-tag">数据分析复盘</span>
+                <span class="skill-tag">SOP搭建</span>
+                <span class="skill-tag">AI工具应用</span>
+                <span class="skill-tag">活动策划</span>
+                <span class="skill-tag">文案包装</span>
+            </div>
+        </section>
 
-    <div class="buttons">
-
-      <button class="btn btn-primary sound-btn">
-        查看 Growth Cases
-      </button>
-
-      <button class="btn btn-secondary sound-btn">
-        联系我
-      </button>
-
-    </div>
-
-  </section>
-
-  <!-- STATS -->
-
-  <section class="reveal">
-
-    <div class="section-title">
-      Key Metrics
-    </div>
-
-    <div class="stats">
-
-      <div class="stat float">
-        <div class="stat-number">
-          1.5亿+
-        </div>
-
-        <div class="stat-label">
-          累计 GMV
-        </div>
-      </div>
-
-      <div class="stat float">
-        <div class="stat-number">
-          202%
-        </div>
-
-        <div class="stat-label">
-          平台同比增长
-        </div>
-      </div>
-
-      <div class="stat float">
-        <div class="stat-number">
-          400w+
-        </div>
-
-        <div class="stat-label">
-          年佣金收益
-        </div>
-      </div>
-
-      <div class="stat float">
-        <div class="stat-number">
-          TOP8
-        </div>
-
-        <div class="stat-label">
-          美团全国类目
-        </div>
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- CASES -->
-
-  <section id="cases" class="reveal">
-
-    <div class="section-title">
-      Featured Growth Cases
-    </div>
-
-    <div class="cases">
-
-      <div class="case">
-
-        <div class="case-title">
-          适老化智慧商城增长项目
-        </div>
-
-        <p>
-          围绕银发经济打造“线上商城 + 上门服务” O2O 模式，
-          通过 AI 辅助选品与精细化运营，
-          推动业务高速增长。
-        </p>
-
-        <div class="tags">
-
-          <div class="tag">
-            GMV 1.5亿+
-          </div>
-
-          <div class="tag">
-            AI 选品
-          </div>
-
-          <div class="tag">
-            O2O 增长
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="case">
-
-        <div class="case-title">
-          全棉时代 O2O 增长项目
-        </div>
-
-        <p>
-          负责饿了么、淘鲜达等平台增长运营，
-          通过资源位获取与 ROI 优化，
-          推动平台同比增长 202%。
-        </p>
-
-        <div class="tags">
-
-          <div class="tag">
-            ROI 优化
-          </div>
-
-          <div class="tag">
-            同比增长 202%
-          </div>
-
-          <div class="tag">
-            平台运营
-          </div>
-
-        </div>
-
-      </div>
+        <!-- 底部留白 -->
+        <footer style="text-align: center; color: var(--text-secondary); font-size: 0.9rem; padding: 20px;">
+            <p>—— 2026 简历更新 ——</p>
+        </footer>
 
     </div>
-
-  </section>
-
-  <!-- EXPERIENCE -->
-
-  <section id="experience" class="reveal">
-
-    <div class="section-title">
-      Experience
-    </div>
-
-    <div class="timeline">
-
-      <div class="timeline-item">
-
-        <div class="timeline-company">
-          深圳市福瑞信息技术有限公司
-        </div>
-
-        <div class="timeline-role">
-          Growth Operations
-        </div>
-
-        <div class="timeline-date">
-          2024 - Present
-        </div>
-
-      </div>
-
-      <div class="timeline-item">
-
-        <div class="timeline-company">
-          全棉时代科技有限公司
-        </div>
-
-        <div class="timeline-role">
-          O2O Growth Operations
-        </div>
-
-        <div class="timeline-date">
-          2023 - 2024
-        </div>
-
-      </div>
-
-      <div class="timeline-item">
-
-        <div class="timeline-company">
-          少女派科技有限公司
-        </div>
-
-        <div class="timeline-role">
-          Community Commerce Operations
-        </div>
-
-        <div class="timeline-date">
-          2022 - 2023
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <!-- CONTACT -->
-
-  <section id="contact" class="reveal">
-
-    <div class="contact">
-
-      <h2>
-        Let's Build Growth.
-      </h2>
-
-      <p>
-        期待与优秀团队共同创造增长价值。
-      </p>
-
-      <div class="buttons">
-
-        <a href="mailto:1439643417@qq.com"
-           class="btn btn-primary sound-btn">
-          Email Me
-        </a>
-
-        <a href="#"
-           class="btn btn-secondary sound-btn">
-          LinkedIn
-        </a>
-
-      </div>
-
-    </div>
-
-  </section>
-
-</div>
-
-<!-- AUDIO -->
-
-<audio id="clickSound">
-  <source
-  src="https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3"
-  type="audio/mpeg">
-</audio>
-
-<!-- JS -->
-
-<script>
-
-/* BUTTON SOUND */
-
-const soundBtns =
-document.querySelectorAll('.sound-btn');
-
-const clickSound =
-document.getElementById('clickSound');
-
-soundBtns.forEach(btn=>{
-
-  btn.addEventListener('click',(e)=>{
-
-    clickSound.currentTime = 0;
-    clickSound.play();
-
-    /* RIPPLE */
-
-    const x =
-    e.clientX -
-    btn.getBoundingClientRect().left;
-
-    const y =
-    e.clientY -
-    btn.getBoundingClientRect().top;
-
-    btn.style.setProperty('--x',`${x}px`);
-    btn.style.setProperty('--y',`${y}px`);
-
-  });
-
-});
-
-/* REVEAL ANIMATION */
-
-const reveals =
-document.querySelectorAll('.reveal');
-
-window.addEventListener('scroll',()=>{
-
-  reveals.forEach(el=>{
-
-    const top =
-    el.getBoundingClientRect().top;
-
-    if(top < window.innerHeight - 100){
-      el.classList.add('active');
-    }
-
-  });
-
-});
-
-</script>
 
 </body>
 </html>
